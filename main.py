@@ -2,6 +2,7 @@
 
 import math
 import urllib.parse
+from time import sleep
 
 from youtube_data_api_client import YoutubeDataApiClient
 
@@ -18,7 +19,13 @@ def main():
     live_id = urllib.parse.urlparse(url).path[1:]
     live_chat_id = youtube.get_live_chat_id(live_id)
 
-    print(live_chat_id)
+    next_page_token = None
+    while True:
+        live_chat_messages = youtube.get_live_chat_messages(
+            live_chat_id, next_page_token)
+        next_page_token = live_chat_messages['next_page_token']
+        print(live_chat_messages['messages'])
+        sleep(10)
 
 
 if __name__ == '__main__':

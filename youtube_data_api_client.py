@@ -52,3 +52,16 @@ class YoutubeDataApiClient():
             part='snippet', id=live_id).execute()
 
         return live_broadcasts['items'][0]['snippet']['liveChatId']
+
+    def get_live_chat_messages(self, live_chat_id, next_page_token=None):
+        live_chat_messages = self.__client.liveChatMessages().list(
+            liveChatId=live_chat_id,
+            part='snippet',
+            maxResults=200,
+            pageToken=next_page_token
+        ).execute()
+
+        return {
+            'next_page_token': live_chat_messages['nextPageToken'],
+            'messages': [i['snippet']['displayMessage'] for i in live_chat_messages['items']]
+        }
