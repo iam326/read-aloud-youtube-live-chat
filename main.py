@@ -33,17 +33,23 @@ def main():
     live_chat_id = youtube.get_live_chat_id(live_id)
 
     next_page_token = None
-    while True:
-        live_chat_messages = youtube.get_live_chat_messages(
-            live_chat_id, next_page_token)
 
-        for message in live_chat_messages['messages']:
-            convert_to_voice('voice.mp3', message)
-            # Raspberry PI で読ませる
-            print(message)
+    try:
+        while True:
+            print('get live chat message ...')
+            live_chat_messages = youtube.get_live_chat_messages(
+                live_chat_id, next_page_token)
 
-        next_page_token = live_chat_messages['next_page_token']
-        sleep(10)
+            for message in live_chat_messages['messages']:
+                convert_to_voice('voice.mp3', message)
+                # Raspberry PI で読ませる
+                print(message)
+
+            next_page_token = live_chat_messages['next_page_token']
+            sleep(10)
+
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == '__main__':
