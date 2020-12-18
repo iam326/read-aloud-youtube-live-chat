@@ -18,7 +18,7 @@ polly = boto3.client('polly', 'ap-northeast-1')
 pygame.mixer.init()
 
 
-def convert_to_voice(path, text):
+def convert_to_voice(text, path):
     result = polly.synthesize_speech(Text=text, OutputFormat='mp3',
                                      VoiceId='Joanna', Engine='neural')
     with closing(result["AudioStream"]) as stream:
@@ -51,7 +51,7 @@ def main():
 
             for message in live_chat_messages['messages']:
                 print(message)
-                convert_to_voice('voice.mp3', message)
+                convert_to_voice(message, 'voice.mp3')
                 play_sound('voice.mp3')
                 sleep(1)
 
