@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import math
+import pygame.mixer
 import urllib.parse
 from contextlib import closing
 from time import sleep
@@ -13,7 +14,8 @@ YOUTUBE_DATA_CLIENT_SECRETS_FILE = "client_secrets.json"
 YOUTUBE_DATA_API_CLIENT_SCOPES = [
     'https://www.googleapis.com/auth/youtube.readonly']
 
-polly = boto3.client('polly')
+polly = boto3.client('polly', 'ap-northeast-1')
+pygame.mixer.init()
 
 
 def convert_to_voice(path, text):
@@ -23,6 +25,11 @@ def convert_to_voice(path, text):
         with open(path, 'wb') as file:
             file.write(stream.read())
 
+def play_sound(path):
+    pygame.mixer.music.load(path)
+    pygame.mixer.music.play(1)
+    while pygame.mixer.music.get_busy():
+        sleep(0.1)
 
 def main():
     youtube = YoutubeDataApiClient(
@@ -41,9 +48,10 @@ def main():
                 live_chat_id, next_page_token)
 
             for message in live_chat_messages['messages']:
-                convert_to_voice('voice.mp3', message)
-                # Raspberry PI で読ませる
                 print(message)
+                convert_to_voice('voice.mp3', message)
+                play_sound('voice.mp3')
+                sleep(1)
 
             next_page_token = live_chat_messages['next_page_token']
             sleep(10)
