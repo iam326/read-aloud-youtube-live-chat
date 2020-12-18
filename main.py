@@ -25,11 +25,13 @@ def convert_to_voice(path, text):
         with open(path, 'wb') as file:
             file.write(stream.read())
 
+
 def play_sound(path):
     pygame.mixer.music.load(path)
     pygame.mixer.music.play(1)
     while pygame.mixer.music.get_busy():
         sleep(0.1)
+
 
 def main():
     youtube = YoutubeDataApiClient(
@@ -43,7 +45,7 @@ def main():
 
     try:
         while True:
-            print('get live chat message ...')
+            print('get live chat messages ...')
             live_chat_messages = youtube.get_live_chat_messages(
                 live_chat_id, next_page_token)
 
