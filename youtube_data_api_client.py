@@ -3,7 +3,6 @@
 import os
 
 import httplib2
-import isodate
 
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
