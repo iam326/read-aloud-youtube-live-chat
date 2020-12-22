@@ -27,10 +27,10 @@ https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 class YoutubeDataApiClient():
 
     def __init__(self, client_secrets_file, scopes):
-        self.__client = self.get_youtube_data_api_client(
+        self.__client = self.get_authenticated_service(
             client_secrets_file, scopes)
 
-    def get_youtube_data_api_client(self, client_secrets_file, scopes):
+    def get_authenticated_service(self, client_secrets_file, scopes):
         message = MISSING_CLIENT_SECRETS_MESSAGE % os.path.abspath(
             os.path.join(os.path.dirname(__file__), client_secrets_file))
         flow = flow_from_clientsecrets(client_secrets_file,
