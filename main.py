@@ -8,9 +8,11 @@ from time import sleep
 
 from youtube_data_api_client import YoutubeDataApiClient
 
-YOUTUBE_DATA_CLIENT_SECRETS_FILE = "client_secrets.json"
+YOUTUBE_DATA_CLIENT_SECRETS_FILE = 'client_secrets.json'
 YOUTUBE_DATA_API_CLIENT_SCOPES = [
     'https://www.googleapis.com/auth/youtube.readonly']
+DEST_AUDIO_FILE = 'message.mp3'
+WAIT_SEC = 10
 
 polly = boto3.client('polly', 'ap-northeast-1')
 pygame.mixer.init()
@@ -19,7 +21,7 @@ pygame.mixer.init()
 def convert_to_voice(text, path):
     result = polly.synthesize_speech(Text=text, OutputFormat='mp3',
                                      VoiceId='Joanna', Engine='neural')
-    with closing(result["AudioStream"]) as stream:
+    with closing(result['AudioStream']) as stream:
         with open(path, 'wb') as file:
             file.write(stream.read())
 
@@ -49,12 +51,12 @@ def main():
 
             for message in live_chat_messages['messages']:
                 print(message)
-                convert_to_voice(message, 'voice.mp3')
-                play_sound('voice.mp3')
+                convert_to_voice(message, DEST_AUDIO_FILE)
+                play_sound(DEST_AUDIO_FILE)
                 sleep(1)
 
             next_page_token = live_chat_messages['next_page_token']
-            sleep(10)
+            sleep(WAIT_SEC)
 
     except KeyboardInterrupt:
         pass
