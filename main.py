@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
-import math
+import boto3
 import pygame.mixer
 import urllib.parse
 from contextlib import closing
 from time import sleep
-
-import boto3
 
 from youtube_data_api_client import YoutubeDataApiClient
 
