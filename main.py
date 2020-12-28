@@ -14,7 +14,7 @@ YOUTUBE_DATA_API_CLIENT_SCOPES = [
 DEST_AUDIO_FILE = 'message.mp3'
 WAIT_SEC = 10
 
-polly = boto3.client('polly', 'ap-northeast-1')
+polly = boto3.client('polly')
 pygame.mixer.init()
 
 
