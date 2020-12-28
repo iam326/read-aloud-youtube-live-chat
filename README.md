@@ -5,7 +5,7 @@ YouTube Live のチャットを Raspberry Pi に読ませる
 ## Setup
 
 ```
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 ## Usage
