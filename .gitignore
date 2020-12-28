@@ -1,4 +1,5 @@
 __pycache__
 client_secrets.json
 youtube-oauth2.json
+token.pickle
 *.mp3
