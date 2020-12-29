@@ -1,4 +1,4 @@
-# read-out-youtube-live-chat
+# read-aloud-youtube-live-chat
 
 Amazon Polly を使用して Raspberry Pi に YouTube Live のチャットを読み上げてもらう
 
