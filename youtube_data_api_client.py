@@ -40,7 +40,7 @@ class YoutubeDataApiClient():
 
     def get_live_chat_id(self, live_id):
         live_broadcasts = self.__client.liveBroadcasts().list(
-            part='snippet', id=live_id).execute()
+            part='snippet', id=live_id, fields='items(snippet(liveChatId))').execute()
 
         return live_broadcasts['items'][0]['snippet']['liveChatId']
 
@@ -49,7 +49,8 @@ class YoutubeDataApiClient():
             liveChatId=live_chat_id,
             part='snippet',
             maxResults=200,
-            pageToken=next_page_token
+            pageToken=next_page_token,
+            fields='nextPageToken,items(snippet(displayMessage))'
         ).execute()
 
         return {
