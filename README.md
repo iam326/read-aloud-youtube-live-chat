@@ -1,6 +1,6 @@
 # read-out-youtube-live-chat
 
-YouTube Live のチャットを Raspberry Pi に読ませる
+Amazon Polly を使用して Raspberry Pi に YouTube Live のチャットを読み上げてもらう
 
 ## Environment
 
@@ -41,3 +41,7 @@ $ pip3 install -r requirements.txt
 ```
 $ python3 main.py
 ```
+
+## Demo
+
+[![](http://img.youtube.com/vi/TqQ8_2Mi0TA/0.jpg)](http://www.youtube.com/watch?v=TqQ8_2Mi0TA "")
