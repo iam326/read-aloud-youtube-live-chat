@@ -40,6 +40,13 @@ $ pip3 install -r requirements.txt
 
 ```
 $ python3 main.py
+
+YouTube Live URL: https://youtu.be/xxxxxxxxxxx
+
+get live chat messages ...
+hello
+good morning
+...
 ```
 
 ## Demo
