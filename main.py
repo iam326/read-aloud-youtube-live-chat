@@ -6,10 +6,10 @@ import urllib.parse
 from contextlib import closing
 from time import sleep
 
-from youtube_data_api_client import YoutubeDataApiClient
+from youtube_live_streaming_api_client import YoutubeLiveStreamingApiClient
 
-YOUTUBE_DATA_CLIENT_SECRETS_FILE = 'client_secrets.json'
-YOUTUBE_DATA_API_CLIENT_SCOPES = [
+YOUTUBE_CLIENT_SECRETS_FILE = 'client_secrets.json'
+YOUTUBE_CLIENT_SCOPES = [
     'https://www.googleapis.com/auth/youtube.readonly']
 DEST_AUDIO_FILE = 'message.mp3'
 WAIT_SEC = 10
@@ -34,8 +34,8 @@ def play_sound(path):
 
 
 def main():
-    youtube = YoutubeDataApiClient(
-        YOUTUBE_DATA_CLIENT_SECRETS_FILE, YOUTUBE_DATA_API_CLIENT_SCOPES)
+    youtube = YoutubeLiveStreamingApiClient(
+        YOUTUBE_CLIENT_SECRETS_FILE, YOUTUBE_CLIENT_SCOPES)
 
     url = input('YouTube Live URL: ')
     live_id = urllib.parse.urlparse(url).path[1:]

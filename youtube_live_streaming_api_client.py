@@ -10,7 +10,7 @@ API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
 
-class YoutubeDataApiClient():
+class YoutubeLiveStreamingApiClient():
 
     def __init__(self, client_secrets_file, scopes):
         self.__client = self.get_authenticated_service(
